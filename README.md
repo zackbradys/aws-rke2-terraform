@@ -24,7 +24,7 @@ A little bit about me, my history, and what I've done in the industry.
 
 ## Introduction
 
-The intent of this repository is to provide a baseline for an out of the box and highly available deployment of a [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS using Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments. It was based off of the common issue of bootstrapping RKE2 with very little or no available services. In order to provide this deployment with as little assumptions and complexities as possible, you must manually set DNS and bootstrap RKE2. 
+The intent of this repository is to provide a baseline for a out of the box, secure, and highly available deployment of a [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS using Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments. It was based off of the common issue of bootstrapping RKE2 with very little or no available services. In order to provide this deployment with as little assumptions and complexities as possible, you must manually set DNS and bootstrap RKE2. 
 
 Please feel free to utilize GitHub Issues and GitHub Pull Requests to add your thoughts and changes. 
 
@@ -108,10 +108,12 @@ ssh -i "YOUR-KEY-NAME.pem" rocky@ec2.cp.ip.1
 cd /opt/rancher/rke2-control-finalizer.txt
 cd /opt/rancher/rke2-agent-finalizer.txt
 ```
+
 ## Roadmap
 * Repository/Code Formatting
 * README Updates/Instructions
-* Terraform Code for
+* Terraform Code Additions for
   * Configuring an AWS ELB
   * Configuring your Route 53
   * Bring Your Own LB/DNS/IP
+    * Current code solution, but obvisouly not implemented within terraform
