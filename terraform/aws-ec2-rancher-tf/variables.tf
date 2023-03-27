@@ -1,5 +1,5 @@
 variable "region" {
-  default     = "us-east-1"
+  default     = ""
   description = "(Required) The AWS Region to use for the instance(s)."
 }
 
@@ -59,7 +59,7 @@ variable "associate_public_ip_address" {
 }
 
 variable "key_pair_name" {
-  default     = "aws-zackbradys-work"
+  default     = ""
   description = "(Required) The AWS Key Pair name to use for the instance(s)."
 }
 
