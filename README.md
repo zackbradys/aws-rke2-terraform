@@ -109,7 +109,9 @@ cd /opt/rancher/rke2-control-finalizer.txt
 cd /opt/rancher/rke2-agent-finalizer.txt
 ```
 ## Roadmap
+* Repository/Code Formatting
+* README Updates/Instructions
 * Terraform Code for
   * Configuring an AWS ELB
   * Configuring your Route 53
-  * or Bring Your Own LB/DNS/IP
+  * Bring Your Own LB/DNS/IP
