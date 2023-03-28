@@ -57,7 +57,7 @@ sysctl -p > /dev/null 2>&1
 
 ### Install Packages
 yum update -y
-yum install -y zip zstd skopeo tree jq iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup iscsi-initiator-utils
+yum install -y zip zstd skopeo tree jq iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup iscsi-initiator-utils nfs-utils
 systemctl enable --now iscsid && echo -e "[keyfile]\nunmanaged-devices=interface-name:cali*;interface-name:flannel*" > /etc/NetworkManager/conf.d/rke2-canal.conf
 
 ### Install AWS CLI
@@ -78,8 +78,8 @@ yum -y install terraform
 mkdir -p /opt/rancher/cosign
 cd /opt/rancher/cosign
 curl -#OL https://github.com/sigstore/cosign/releases/download/v1.8.0/cosign-linux-amd64
-mv cosign-linux-amd64 /usr/local/bin/cosign
-chmod 755 /usr/local/bin/cosign
+mv cosign-linux-amd64 /usr/bin/cosign
+chmod 755 /usr/bin/cosign
 
 ### Install Helm
 mkdir -p /opt/rancher/helm
@@ -172,7 +172,7 @@ systemctl enable rke2-server.service && systemctl start rke2-server.service
 cat /var/lib/rancher/rke2/server/token > /opt/rancher/token
 cat /opt/rancher/token
 
-sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/local/bin/kubectl
+sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
 sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
 
 6) Ensure you configured your shell with the following:

@@ -57,7 +57,7 @@ sysctl -p > /dev/null 2>&1
 
 ### Install Packages
 yum update -y
-yum install -y zip zstd skopeo tree iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup iscsi-initiator-utils
+yum install -y zip zstd skopeo tree iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup iscsi-initiator-utils nfs-utils
 
 ### Setup RKE2 Agent
 mkdir -p /etc/rancher/rke2/
