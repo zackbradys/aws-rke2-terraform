@@ -79,7 +79,7 @@ mkdir -p /opt/rancher
 cat << EOF >> /opt/rancher/rke2-agent-finalizer.txt
 
 1) Ensure you have set the server and token in /etc/rancher/rke2/config.yaml
-server: https://:9345
+server: https://example.com:9345
 token: awsRKE2terraform
 
 2) After completing those changes, run the following command to start the rke2-agent:

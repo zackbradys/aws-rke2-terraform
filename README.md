@@ -80,6 +80,7 @@ terraform apply --auto-approve
 
 **Step 4a:** Setup DNS Round Robin on your DNS Server/Provider. I prefer to utilize this option in AWS Route 53, with the following configuration:
 
+Example Domain A Record:
 ```bash
 Record Name: example.com
 Record Type: A – Routes traffic to an IPv4 address and some AWS resources
@@ -94,10 +95,25 @@ Record TTL: 300
 Record Routing Policy: Simple Routing
 ```
 
+Example Domain CNAME Record:
+```bash
+Record Name: *.example.com
+Record Type: CNAME – Routes traffic to another domain name and to some AWS resources
+Record Alias: No
+
+Record Value: 
+example.com
+
+Record TTL: 300
+Record Routing Policy: Simple Routing
+```
+
 **Step 4b:** If you do not have a DNS Server available, you are able to configure your local /etc/hosts and on each of the nodes /etc/hosts, with the following configuration:
 
+Example /etc/hosts:
 ```bash
 ec2.cp.ip.1 ec2.cp.ip.2 ec2.cp.ip.3 example.com
+example.com *.example.com
 ```
 
 **Step 5:** SSH into each node and complete the final steps located in the following files:
@@ -116,4 +132,4 @@ cd /opt/rancher/rke2-agent-finalizer.txt
   * Configuring an AWS ELB
   * Configuring your Route 53
   * Bring Your Own LB/DNS/IP
-    * Current code solution, but obvisouly not implemented within terraform
+    * Current solution, but not implemented within terraform and requires manual configuration

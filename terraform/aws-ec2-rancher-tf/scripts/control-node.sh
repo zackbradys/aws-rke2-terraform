@@ -157,13 +157,13 @@ cat << EOF >> /opt/rancher/rke2-control-finalizer.txt
 2) Ensure you have set the token and tls-san values on the FIRST NODE in /etc/rancher/rke2/config.yaml
 token: awsRKE2terraform
 tls-san:
-  - 
+  - example.com
 
 3) Ensure you have set the server, token, and tls-san values on the SECOND/THIRD NODEs in /etc/rancher/rke2/config.yaml
-server: https://:9345
+server: https://example.com:9345
 token: awsRKE2terraform
 tls-san:
-  - 
+  - example.com
 
 4) After completeing those changes, run the following commands to start the rke2-server:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
