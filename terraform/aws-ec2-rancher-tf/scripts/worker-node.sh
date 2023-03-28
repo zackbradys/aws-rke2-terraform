@@ -56,8 +56,11 @@ EOF
 sysctl -p > /dev/null 2>&1
 
 ### Install Packages
+yum install -y zip zstd tree jq iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup
+yum --setopt=tsflags=noscripts install -q -y nfs-utils
+yum --setopt=tsflags=noscripts install -q -y iscsi-initiator-utils && echo "InitiatorName=$(/sbin/iscsi-iname)" > /etc/iscsi/initiatorname.iscsi && systemctl -q enable iscsid && systemctl start iscsid
+echo -e "[keyfile]\nunmanaged-devices=interface-name:cali*;interface-name:flannel*" > /etc/NetworkManager/conf.d/rke2-canal.conf
 yum update -y
-yum install -y zip zstd skopeo tree iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup iscsi-initiator-utils nfs-utils
 
 ### Setup RKE2 Agent
 mkdir -p /etc/rancher/rke2/
@@ -77,11 +80,12 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24 INSTALL_RKE2_TYPE=age
 ### Configure RKE2 Agent Finalizers
 mkdir -p /opt/rancher
 cat << EOF >> /opt/rancher/rke2-agent-finalizer.txt
-
-1) Ensure you have set the server and token in /etc/rancher/rke2/config.yaml
+1) For each agent node, copy and paste the following to /etc/rancher/rke2/config.yaml
 server: https://example.com:9345
 token: awsRKE2terraform
 
 2) After completing those changes, run the following command to start the rke2-agent:
 systemctl enable rke2-agent.service && systemctl start rke2-agent.service
+
+3) Once the rke2-agent is sucessfully running, you can your terminal and forget about the node.
 EOF

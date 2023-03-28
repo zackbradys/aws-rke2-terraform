@@ -56,9 +56,11 @@ EOF
 sysctl -p > /dev/null 2>&1
 
 ### Install Packages
+yum install -y zip zstd tree jq iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup
+yum --setopt=tsflags=noscripts install -q -y nfs-utils
+yum --setopt=tsflags=noscripts install -q -y iscsi-initiator-utils && echo "InitiatorName=$(/sbin/iscsi-iname)" > /etc/iscsi/initiatorname.iscsi && systemctl -q enable iscsid && systemctl start iscsid
+echo -e "[keyfile]\nunmanaged-devices=interface-name:cali*;interface-name:flannel*" > /etc/NetworkManager/conf.d/rke2-canal.conf
 yum update -y
-yum install -y zip zstd skopeo tree jq iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup iscsi-initiator-utils nfs-utils
-systemctl enable --now iscsid && echo -e "[keyfile]\nunmanaged-devices=interface-name:cali*;interface-name:flannel*" > /etc/NetworkManager/conf.d/rke2-canal.conf
 
 ### Install AWS CLI
 mkdir -p /opt/rancher/aws
@@ -151,34 +153,42 @@ EOF
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24 INSTALL_RKE2_TYPE=server sh - 
 
 ### Configure RKE2 Control Finalizers
+mkdir -p /opt/rancher
 cat << EOF >> /opt/rancher/rke2-control-finalizer.txt
-
-1) Verify you have set DNS Round Robin setup so the server can be reached on the set domain
-2) Ensure you have set the token and tls-san values on the FIRST NODE in /etc/rancher/rke2/config.yaml
+1) Ensure to complete the DNS for the domain you are using for the RKE2 Server before starting the rke2-server.
+2) For the FIRST CONTROL NODE, copy and paste the following to /etc/rancher/rke2/config.yaml/etc/rancher/rke2/config.yaml:
 token: awsRKE2terraform
 tls-san:
   - example.com
 
-3) Ensure you have set the server, token, and tls-san values on the SECOND/THIRD NODEs in /etc/rancher/rke2/config.yaml
-server: https://example.com:9345
-token: awsRKE2terraform
-tls-san:
-  - example.com
-
-4) After completeing those changes, run the following commands to start the rke2-server:
+3) After completeing those changes, run the following commands to start the rke2-server:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
 
-5) Once the server is active, run the following commands to get the token and configure rke2/kubectl:
+4) Once the rke2-server is sucessfully running on the FIRST CONTROL NODE, run the following commands:
 cat /var/lib/rancher/rke2/server/token > /opt/rancher/token
 cat /opt/rancher/token
 
 sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
 sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
 
-6) Ensure you configured your shell with the following:
+6) Copy and paste the following items to your ~/.bashrc file:
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml 
 export PATH=$PATH;/var/lib/rancher/rke2/bin;/usr/local/bin/
 alias k=kubectl
 
+7) Run the following commands to source the ~/.bashrc file:
 source ~/.bashrc
+
+8) To verify the rke2-server is running, run the following command:
+kubectl get nodes -o wide
+
+9) For the SECOND AND THIRD CONTROL NODES, copy and paste the following to /etc/rancher/rke2/config.yaml:
+server: https://example.com:9345
+token: awsRKE2terraform
+tls-san:
+  - example.com
+
+10) After completeing those changes, run the following commands to start the rke2-server:
+systemctl enable rke2-server.service && systemctl start rke2-server.service
+
 EOF
