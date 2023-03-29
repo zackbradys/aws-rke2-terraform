@@ -24,9 +24,9 @@ A little bit about me, my history, and what I've done in the industry.
 
 ## Introduction
 
-The intent of this repository is to provide a baseline for a out of the box, secure, and highly available deployment of a [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS using Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments. It was based off of the common issue of bootstrapping RKE2 with very little or no available services and limited knowledge of RKE2 or Kubernetes. In order to provide this deployment with as little assumptions and complexities as possible, you must manually set DNS and bootstrap RKE2. 
+The intent of this repository is to provide a baseline for a out of the box, secure, and highly available deployment of a [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS using Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments. It was based off of the common issue of bootstrapping RKE2 with very little or no available services and limited knowledge of RKE2 or Kubernetes. In order to provide this deployment method, with as little assumptions and complexities as possible, for Kubernetes, you must manually configure your DNS and bootstrap RKE2. 
 
-**At the end of this deployment, you will have a Highly Available (HA) RKE2 Kubernetes Cluster with all the controls from the RKE2 DISA STIG, running in multiple AWS Availability Zones, deployed and managed by Terraform.**
+**At the end of this deployment, you will have a Highly Available (HA) RKE2 Kubernetes Cluster with all the controls from the RKE2 DISA STIG, running in multiple AWS Subnets and AWS Availability Zones, and deployed/managed by Terraform.**
 
 **Contributing:** Please feel free to utilize GitHub Issues and GitHub Pull Requests to add your thoughts and changes. 
 
@@ -114,7 +114,7 @@ Record Routing Policy: Simple Routing
 
 **Step 4b:** If you do not have a DNS Server available, you are able to configure your local /etc/hosts and on each of the nodes /etc/hosts, with the following configuration:
 
-Example /etc/hosts:
+Example /etc/hosts on each node and locally:
 ```bash
 ec2.cp.ip.1 ec2.cp.ip.2 ec2.cp.ip.3 example.com
 example.com *.example.com
