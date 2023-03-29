@@ -70,12 +70,6 @@ unzip awscli-exe-linux-x86_64.zip
 rm -rf awscli-exe-linux-x86_64.zip
 sudo ./aws/install
 
-### Install Terraform
-mkdir -p /opt/rancher/terraform
-cd /opt/rancher/terraform
-yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-yum -y install terraform
-
 ### Install Cosign
 mkdir -p /opt/rancher/cosign
 cd /opt/rancher/cosign
@@ -190,5 +184,4 @@ tls-san:
 
 10) After completeing those changes, run the following commands to start the rke2-server:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
-
 EOF
