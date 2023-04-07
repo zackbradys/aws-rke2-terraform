@@ -174,7 +174,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress9" {
   description       = "Allow RKE2 Calico Communication"
 }
 
-resource "aws_security_group_rule" "aws_rke2_sg_ingress" {
+resource "aws_security_group_rule" "aws_rke2_sg_ingress10" {
   type              = "ingress"
   from_port         = 8472
   to_port           = 8472
@@ -182,6 +182,26 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
   description       = "Allow RKE2 VXLAN Communication"
+}
+
+resource "aws_security_group_rule" "aws_rke2_sg_ingress11" {
+  type              = "ingress"
+  from_port         = 11443
+  to_port           = 11443
+  protocol          = "TCP"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.aws_rke2_sg.id
+  description       = "Allow Rancher NeuVector Communication"
+}
+
+resource "aws_security_group_rule" "aws_rke2_sg_ingress12" {
+  type              = "ingress"
+  from_port         = 10443
+  to_port           = 10443
+  protocol          = "TCP"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.aws_rke2_sg.id
+  description       = "Allow Rancher NeuVector Communication"
 }
 
 resource "aws_security_group_rule" "aws_rke2_sg_egress1" {
