@@ -24,11 +24,11 @@ A little bit about me, my history, and what I've done in the industry.
 
 ## Introduction
 
-The intent of this repository is to provide a baseline for a out of the box, secure, and highly available deployment of a [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS using Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments. It was based off of the common issue of bootstrapping RKE2 with very little or no available services and limited knowledge of RKE2 or Kubernetes. In order to provide this deployment method, with as little assumptions and complexities as possible, for Kubernetes, you must manually configure your DNS and bootstrap RKE2. 
+The intent of this repository is to provide a baseline deployment for an out of the box, secure, and highly available [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS managed by Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments. It was based off of the common issue of bootstrapping RKE2 with very little or no available services and limited knowledge of RKE2 or Kubernetes.
 
-**At the end of this deployment, you will have a Highly Available (HA) RKE2 Kubernetes Cluster with all the controls from the RKE2 DISA STIG, running in multiple AWS Subnets and AWS Availability Zones, and deployed/managed by Terraform.**
+**At the end of this deployment, you will have a Highly Available (HA) RKE2 Kubernetes Cluster, the controls from the RKE2 DISA STIG, utilzing multiple AWS Subnets and AWS Availability Zones, and managed by Terraform.**
 
-**Contributing:** Please feel free to utilize GitHub Issues and GitHub Pull Requests to add your thoughts and changes. 
+**Contributing:** Please utilize GitHubs features such as Forks, Issues, and Pull Requests to contribute!
 
 **Note:** This repository is a work in progress and may change from time to time.
 
@@ -37,8 +37,8 @@ The intent of this repository is to provide a baseline for a out of the box, sec
 * Git Utility (Git, Github Desktop, etc...)
 * Terminal Utility (Terminal, VSCode, Termius etc...)
 * HashiCorp Terraform with Access to the AWS Provider 
-* An AWS Commercial or GovCloud Account (with an Access Key and Secret Key)
-* Ability to Subscribe to the [AWS Marketplace Listing for the AMI for Rocky 9](https://aws.amazon.com/marketplace/pp/prodview-ygp66mwgbl2ii) and/or use your own AWS AMI.
+* AWS Commercial or AWS GovCloud Account (with an Access Key and Secret Key)
+* Ability to Subscribe to the [AWS Marketplace Listing for the AMI for Rocky 9](https://aws.amazon.com/marketplace/pp/prodview-ygp66mwgbl2ii) or use your own AWS AMI Image.
 
 ## Configuration
 
@@ -56,8 +56,7 @@ The intent of this repository is to provide a baseline for a out of the box, sec
 
 ## Roadmap
 * ~~README Updates/Instructions~~
-* Terraform Code Additions for
-  * Configuring an AWS ELB
-  * Configuring your Route 53
+* ~~Terraform Code Additions for~~
+  * ~~Configuring an AWS ELB~~
+  * ~~Configuring your Route 53~~
   * ~~Bring Your Own LB/DNS/IP~~
-    * Current solution, but not implemented within terraform and requires manual configuration
