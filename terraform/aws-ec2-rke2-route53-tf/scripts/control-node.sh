@@ -4,6 +4,7 @@ set -ebpf
 
 ### Set Variables
 export DOMAIN=${DOMAIN}
+export TOKEN=${TOKEN}
 
 ### Applying System Settings
 cat << EOF >> /etc/sysctl.conf
@@ -150,15 +151,15 @@ spec:
         enable-ssl-passthrough: true
 EOF
 
-### Download RKE2 Binaries
+### Download and Install RKE2 Server
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24 INSTALL_RKE2_TYPE=server sh - 
 
 ### Configure RKE2 Control Finalizers
 cat << EOF >> /opt/rancher/rke2-control-finalizer.txt
 1) For the FIRST CONTROL NODE, copy and paste the following to /etc/rancher/rke2/config.yaml:
-token: awsRKE2terraform
+token: $TOKEN
 tls-san:
-  - example.com
+  - $DOMAIN
 
 2) After completeing those changes, run the following commands to start the rke2-server:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
@@ -177,10 +178,10 @@ source ~/.bashrc
 Hint: To verify the rke2-server is running, run the following command: kubectl get nodes -o wide
 
 6) For the SECOND AND THIRD CONTROL NODES, copy and paste the following to /etc/rancher/rke2/config.yaml:
-server: https://example.com:9345
-token: awsRKE2terraform
+server: https://$DOMAIN:9345
+token: $TOKEN
 tls-san:
-  - example.com
+  - $DOMAIN
 
 7) After completeing those changes, run the following commands to start the additional rke2-servers:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
