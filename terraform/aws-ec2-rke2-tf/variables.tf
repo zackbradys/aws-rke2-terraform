@@ -18,6 +18,11 @@ variable "key_pair_name" {
   description = "(Required) The AWS Key Pair name to use for the instance(s)."
 }
 
+variable "domain" {
+  default     = ""
+  description = "(Required) The AWS Route53 Domain to use for the instance(s)."
+}
+
 variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
   description = "(Required) The AWS VPC CIDR Block to use for the instance(s)."

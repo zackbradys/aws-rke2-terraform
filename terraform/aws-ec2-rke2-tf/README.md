@@ -8,7 +8,7 @@
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
 ~~~
 
-**Step 2:** Update the variables in [variables.tf](/aws-ec2-rancher-tf/variables.tf):
+**Step 2:** Update the variables in [variables.tf](/terraform/aws-ec2-rke2-tf/variables.tf):
 
 ~~~ bash
 # Add AWS Region, AWS Access Key, AWS Secret Key, and AWS SSH Key Name
@@ -31,6 +31,11 @@ variable "secret_key" {
 variable "key_pair_name" {
   default     = ""
   description = "(Required) The AWS Key Pair name to use for the instance(s)."
+}
+
+variable "domain" {
+  default     = ""
+  description = "(Required) The AWS Route53 Domain to use for the instance(s)."
 }
 ~~~
 
