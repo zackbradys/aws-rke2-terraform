@@ -1,7 +1,8 @@
 resource "aws_route53_zone" "aws_rke2_zone" {
   name = var.domain
-  comment = "AWS RKE2 Route53 Hosted Zone"
   force_destroy = true
+  private_zone = false
+  comment = "AWS RKE2 Route53 Hosted Zone"
 }
 
 resource "aws_route53_record" "aws_rke2_record_rke2" {
