@@ -3,14 +3,12 @@
 ## Configuration Option: **AWS Route 53 (DNS)**
 
 **Step 1:** Clone the repository:
-
-~~~ bash
+```bash
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
-~~~
+```
 
 **Step 2:** Update the variables in [variables.tf](/terraform/aws-ec2-rke2-route53-tf/variables.tf):
-
-~~~ bash
+```bash
 # Add AWS Region, AWS Access Key, AWS Secret Key, and AWS SSH Key Name
 
 variable "region" {
@@ -37,7 +35,7 @@ variable "domain" {
   default     = ""
   description = "(Required) The AWS Route53 Domain to use for the instance(s)."
 }
-~~~
+```
 
 **Step 3:** Run the Terraform commands
 ```bash
@@ -54,7 +52,6 @@ terraform output
 
 
 **Step 4:** Complete the final steps on each of the nodes:
-
 ```bash
 # Replace IP's and Key
 

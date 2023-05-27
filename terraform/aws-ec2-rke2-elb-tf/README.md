@@ -3,9 +3,8 @@
 ## Configuration Option: **AWS ELB (Load Balancers)**
 
 **Step 1:** Clone the repository:
-
-~~~ bash
+```bash
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
-~~~
+```
 
 *WIP WIP WIP*
