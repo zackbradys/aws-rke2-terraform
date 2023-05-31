@@ -83,7 +83,7 @@ token: $TOKEN
 EOF
 
 ### Download and Install RKE2 Agent
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24.13 INSTALL_RKE2_TYPE=agent sh -
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24 INSTALL_RKE2_TYPE=agent sh -
 
 ### Configure RKE2 Agent Finalizers
 mkdir -p /opt/rancher
