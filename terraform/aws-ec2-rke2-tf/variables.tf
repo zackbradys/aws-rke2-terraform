@@ -1,3 +1,4 @@
+### Required Variables
 variable "region" {
   default     = ""
   description = "(Required) The AWS Region to use for the instance(s)."
@@ -28,6 +29,12 @@ variable "token" {
   description = "(Required) The RKE2 Cluster Join Token to use for the cluster(s)."
 }
 
+variable "ami_id" {
+  default     = "ami-0cce0fd28f5ae1c16"
+  description = "(Required) The AWS AMI ID to use for the instance(s)."
+}
+
+## Networking Variables
 variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
   description = "(Required) The AWS VPC CIDR Block to use for the instance(s)."
@@ -38,6 +45,12 @@ variable "subnet_cidr_blocks" {
   description = "(Required) The AWS Subnet CIDR Blocks to use for the instance(s)."
 }
 
+variable "associate_public_ip_address" {
+  default     = true
+  description = "(Required) Associate AWS Public IP Address for use for the instance(s)."
+}
+
+### Instance Variables
 variable "instance_name_control" {
   default     = "aws-rke2-cp"
   description = "(Required) The name of the AWS EC2 instance."
@@ -46,11 +59,6 @@ variable "instance_name_control" {
 variable "instance_name_worker" {
   default     = "aws-rke2-wk"
   description = "(Required) The name of the AWS EC2 instance."
-}
-
-variable "ami_id" {
-  default     = "ami-0cce0fd28f5ae1c16"
-  description = "(Required) The AWS AMI ID to use for the instance(s)."
 }
 
 variable "instance_type" {
@@ -68,11 +76,7 @@ variable "number_of_instances_worker" {
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }
 
-variable "associate_public_ip_address" {
-  default     = true
-  description = "(Required) Associate AWS Public IP Address for use for the instance(s)."
-}
-
+### User Data Variables
 variable "user_data_control" {
   default     = "scripts/control-node.sh"
   description = "(Required) The AWS User Data to use for the instance(s)."
@@ -83,6 +87,7 @@ variable "user_data_worker" {
   description = "(Required) The AWS User Data to use for the instance(s)."
 }
 
+### Storage Variables
 variable "volume_size" {
   default     = 128
   description = "(Required) The AWS Volume Size to use for the instance(s)."

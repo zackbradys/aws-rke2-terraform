@@ -93,3 +93,8 @@ cat << EOF >> /opt/rancher/rke2-agent-finalizer.txt
 1) Copy and paste the following command to start the rke2-agent:
 systemctl enable rke2-agent.service && systemctl start rke2-agent.service
 EOF
+
+### Verify End of Script
+cat << EOF >> /opt/rancher/COMPLETED
+SUCCESSFULLY COMPLETED THE WORKER NODE CLOUD INIT SCRIPT.
+EOF

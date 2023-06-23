@@ -169,8 +169,6 @@ systemctl enable rke2-server.service && systemctl start rke2-server.service
 
 3) Once the rke2-server is sucessfully running on the FIRST CONTROL NODE, run the following commands:
 cat /var/lib/rancher/rke2/server/token > /opt/rancher/token
-cat /opt/rancher/token
-
 sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
 sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
 
@@ -184,6 +182,8 @@ source ~/.bashrc
 
 Hint: To verify the rke2-server is running, run the following command: kubectl get nodes -o wide
 
+---
+
 SECOND AND THIRD CONTROL NODES:
 1) Copy and paste the following to /etc/rancher/rke2/config.yaml:
 server: https://$DOMAIN:9345
@@ -193,4 +193,9 @@ tls-san:
 
 2) After completeing those changes, run the following commands to start the rke2-server:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
+EOF
+
+### Verify End of Script
+cat << EOF >> /opt/rancher/COMPLETED
+SUCCESSFULLY COMPLETED THE CONTROL NODE CLOUD INIT SCRIPT.
 EOF
