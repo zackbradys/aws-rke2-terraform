@@ -95,6 +95,4 @@ systemctl enable rke2-agent.service && systemctl start rke2-agent.service
 EOF
 
 ### Verify End of Script
-cat << EOF >> /opt/rancher/COMPLETED
-SUCCESSFULLY COMPLETED THE WORKER NODE CLOUD INIT SCRIPT.
-EOF
+date >> /opt/rancher/COMPLETED

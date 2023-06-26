@@ -196,6 +196,4 @@ systemctl enable rke2-server.service && systemctl start rke2-server.service
 EOF
 
 ### Verify End of Script
-cat << EOF >> /opt/rancher/COMPLETED
-SUCCESSFULLY COMPLETED THE CONTROL NODE CLOUD INIT SCRIPT.
-EOF
+date >> /opt/rancher/COMPLETED
