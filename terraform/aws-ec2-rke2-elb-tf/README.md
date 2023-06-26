@@ -1,6 +1,6 @@
 # AWS RKE2 Terraform
 
-## Configuration Option: **AWS ELB (Load Balancers)**
+## Configuration Option: **AWS ELB (Load Balanced)**
 
 **Step 1:** Clone the repository:
 ```bash

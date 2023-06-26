@@ -1,6 +1,6 @@
 # AWS RKE2 Terraform
 
-## Configuration Option: **AWS Route 53 (DNS)**
+## Configuration Option: **AWS Route 53 (DNS Round Robin)**
 
 **Step 1:** Clone the repository:
 ```bash
