@@ -1,32 +1,32 @@
 ### Required Variables
 variable "region" {
-  default     = ""
   description = "(Required) The AWS Region to use for the instance(s)."
 }
 
 variable "access_key" {
-  default = ""
   description = "(Required) The AWS Access Key to use for the instance(s)."
 }
 
 variable "secret_key" {
-  default = ""
   description = "(Required) The AWS Secret Key to use for the instance(s)."
 }
 
 variable "key_pair_name" {
-  default     = ""
   description = "(Required) The AWS Key Pair name to use for the instance(s)."
 }
 
 variable "domain" {
-  default     = ""
   description = "(Required) The AWS Route53 Domain to use for the instance(s)."
 }
 
 variable "token" {
   default = "awsRKE2terraform"
   description = "(Required) The RKE2 Cluster Join Token to use for the cluster(s)."
+}
+
+variable "vRKE2" {
+  default     = "v1.24"
+  description = "(Required) The RKE2 Version to use for the clusters(s)."
 }
 
 variable "ami_id" {

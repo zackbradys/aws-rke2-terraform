@@ -5,6 +5,7 @@ set -ebpf
 ### Set Variables
 export DOMAIN=${DOMAIN}
 export TOKEN=${TOKEN}
+export vRKE2=${vRKE2}
 
 ### Applying System Settings
 cat << EOF >> /etc/sysctl.conf
@@ -152,7 +153,7 @@ spec:
 EOF
 
 ### Download and Install RKE2 Server
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24 INSTALL_RKE2_TYPE=server sh - 
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=$vRKE2 INSTALL_RKE2_TYPE=server sh -
 
 ### Setup RKE2 Control Finalizers
 cat << EOF >> /opt/rancher/rke2-control-finalizer.txt
@@ -173,11 +174,14 @@ sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
 sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
 
 4) Copy and paste the following items to your ~/.bashrc file:
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml 
+export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 export PATH=$PATH:/var/lib/rancher/rke2/bin:/usr/local/bin/
+export DOMAIN=$DOMAIN
+export TOKEN=$TOKEN
+export vRKE2=$vRKE2
 alias k=kubectl
 
-5) Run the following commands to source the ~/.bashrc file:
+5) Run the following command to source the ~/.bashrc file:
 source ~/.bashrc
 
 Hint: To verify the rke2-server is running, run the following command: kubectl get nodes -o wide
