@@ -20,7 +20,7 @@ variable "domain" {
 }
 
 variable "token" {
-  default = "awsRKE2terraform"
+  default     = "awsRKE2terraform"
   description = "(Required) The RKE2 Cluster Join Token to use for the cluster(s)."
 }
 
