@@ -1,7 +1,7 @@
 ---
 title: AWS RKE2 Terraform
 author: Zack Brady - Field Engineer
-contact: zack.brady@rancherfederal.com
+contact: zack.brady@ranchergovernment.com
 ---
 
 # AWS RKE2 Terraform
@@ -14,7 +14,7 @@ contact: zack.brady@rancherfederal.com
 * [Roadmap](#roadmap)
 
 ## About Me
-A little bit about me, my history, and what I've done in the industry. 
+A little bit about me, my history, and what I've done in the industry.
 - DOD/IC Contractor
 - U.S. Military Veteran
 - Open-Source Contributor
@@ -31,7 +31,7 @@ The intent of this repository is to provide a baseline deployment for an out of 
 ## Prerequisites
 * Git Utility (Git, Github Desktop, etc...)
 * Terminal Utility (Terminal, VSCode, Termius etc...)
-* HashiCorp Terraform with Access to the AWS Provider 
+* HashiCorp Terraform with Access to the AWS Provider
 * AWS Commercial or AWS GovCloud Account (with an Access Key and Secret Key)
 * Ability to Subscribe to the [AWS Marketplace Listing for the AMI for Rocky 9](https://aws.amazon.com/marketplace/pp/prodview-ygp66mwgbl2ii) or use your own AWS AMI Image.
 
