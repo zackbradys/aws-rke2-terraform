@@ -106,6 +106,7 @@ kubelet-arg:
 - streaming-connection-idle-timeout=5m
 - max-pods=200
 cloud-provider-name: aws
+server: https://$DOMAIN:9345
 token: $TOKEN
 tls-san:
   - $DOMAIN
@@ -140,24 +141,9 @@ EOF
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=$vRKE2 INSTALL_RKE2_TYPE=server sh -
 
 ### Setup RKE2 Control Finalizers
-cat << EOF >> /opt/rancher/rke2-control-node-finalizer.txt
-1) After setting up LB/DNS/IP, run the following commands to start the rke2-server:
+cat << EOF >> /opt/rancher/rke2-control-nodes-finalizer.txt
+1) After setting up LB/DNS/IP and the FIRST CONTROL NODE is running, run the following commands to start the rke2-servers:
 systemctl enable rke2-server.service && systemctl start rke2-server.service
-
-3) Once the rke2-server is sucessfully running, run the following commands:
-sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
-sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
-
-4) Copy and paste the following items to your ~/.bashrc file:
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
-export PATH=$PATH:/var/lib/rancher/rke2/bin:/usr/local/bin/
-export DOMAIN=$DOMAIN
-export TOKEN=$TOKEN
-export vRKE2=$vRKE2
-alias k=kubectl
-
-5) Run the following command to source the ~/.bashrc file:
-source ~/.bashrc
 EOF
 
 ### Verify End of Script

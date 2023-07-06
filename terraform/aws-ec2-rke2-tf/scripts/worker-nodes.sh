@@ -5,6 +5,7 @@ set -ebpf
 ### Set Variables
 export DOMAIN=${DOMAIN}
 export TOKEN=${TOKEN}
+export vRKE2=${vRKE2}
 
 ### Applying System Settings
 cat << EOF >> /etc/sysctl.conf
@@ -66,12 +67,12 @@ token: $TOKEN
 EOF
 
 ### Download and Install RKE2 Agent
-curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=v1.24 INSTALL_RKE2_TYPE=agent sh -
+curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=$vRKE2 INSTALL_RKE2_TYPE=agent sh -
 
 ### Configure RKE2 Agent Finalizers
 mkdir -p /opt/rancher
-cat << EOF >> /opt/rancher/rke2-agent-finalizer.txt
-1) Copy and paste the following command to start the rke2-agent:
+cat << EOF >> /opt/rancher/rke2-worker-nodes-finalizer.txt
+1) After setting up LB/DNS/IP and all CONTROL NODES are running, run the following commands to start the rke2-agents:
 systemctl enable rke2-agent.service && systemctl start rke2-agent.service
 EOF
 

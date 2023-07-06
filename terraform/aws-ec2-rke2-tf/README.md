@@ -11,8 +11,7 @@ git clone https://github.com/zackbradys/aws-rke2-terraform.git
 
 **Step 3:** Run the Terraform commands
 ```bash
-# cd terraform/aws-ec2-rancher-tf
-
+### cd terraform/aws-ec2-rancher-tf
 terraform init
 
 terraform plan
@@ -26,8 +25,7 @@ terraform output
 
 Example Domain A Record:
 ```bash
-# Replace IP's
-
+### Replace IP's (0.0.0.0)
 Record Name:
 Record Type: A – Routes traffic to an IPv4 address and some AWS resources
 Record Alias: No
@@ -43,8 +41,7 @@ Record Routing Policy: Simple Routing
 
 Example Domain CNAME Record:
 ```bash
-# Replace Domain
-
+### Replace Domain (example.com)
 Record Name: *
 Record Type: CNAME – Routes traffic to another domain name and to some AWS resources
 Record Alias: No
@@ -60,9 +57,8 @@ Record Routing Policy: Simple Routing
 
 Example /etc/hosts on each node and locally:
 ```bash
-# Replace IP's and Domain
-
-# vi /etc/hosts
+### Replace IP's and Domain
+vi /etc/hosts
 
 0.0.0.0 0.0.0.0 0.0.0.0 example.com
 example.com *.example.com
@@ -70,13 +66,15 @@ example.com *.example.com
 
 **Step 5:** SSH into each node and complete the final steps located in the following files:
 ```bash
-# Replace IP's and Key
-
+### Replace IP's and Key
 ssh -i "example.pem" rocky@0.0.0.0
 
-# On the RKE2 Control (cp) Nodes
-vi /opt/rancher/rke2-control-finalizer.txt
+### RKE2 Control (cp) Node
+vi /opt/rancher/rke2-control-node-finalizer.txt
 
-# On the RKE2 Worker (wk) Nodes
-vi /opt/rancher/rke2-agent-finalizer.txt
+### RKE2 Control (cp) Nodes
+vi /opt/rancher/rke2-control-node-finalizer.txt
+
+### RKE2 Worker (wk) Nodes
+vi /opt/rancher/rke2-worker-nodes-finalizer.txt
 ```

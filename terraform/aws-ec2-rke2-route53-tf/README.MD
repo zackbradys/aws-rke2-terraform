@@ -11,8 +11,7 @@ git clone https://github.com/zackbradys/aws-rke2-terraform.git
 
 **Step 3:** Run the Terraform commands
 ```bash
-# cd terraform/aws-ec2-rancher-tf
-
+### cd terraform/aws-ec2-rancher-tf
 terraform init
 
 terraform plan

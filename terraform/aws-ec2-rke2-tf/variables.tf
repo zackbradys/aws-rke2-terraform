@@ -56,17 +56,37 @@ variable "instance_name_control" {
   description = "(Required) The name of the AWS EC2 instance."
 }
 
+variable "instance_name_controls" {
+  default     = "aws-rke2-cp"
+  description = "(Required) The name of the AWS EC2 instance."
+}
+
 variable "instance_name_worker" {
   default     = "aws-rke2-wk"
   description = "(Required) The name of the AWS EC2 instance."
 }
 
-variable "instance_type" {
+variable "instance_type_control" {
+  default     = "m5d.xlarge"
+  description = "(Required) The AWS Instance type to use for the instance(s)."
+}
+
+variable "instance_type_controls" {
+  default     = "m5d.xlarge"
+  description = "(Required) The AWS Instance type to use for the instance(s)."
+}
+
+variable "instance_type_worker" {
   default     = "m5d.xlarge"
   description = "(Required) The AWS Instance type to use for the instance(s)."
 }
 
 variable "number_of_instances_control" {
+  default     = 1
+  description = "(Required) The number of AWS EC2 instances to create on deployment."
+}
+
+variable "number_of_instances_controls" {
   default     = 3
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }
@@ -81,19 +101,43 @@ variable "user_data_control" {
   default     = "scripts/control-node.sh"
   description = "(Required) The AWS User Data to use for the instance(s)."
 }
+variable "user_data_controls" {
+  default     = "scripts/control-nodes.sh"
+  description = "(Required) The AWS User Data to use for the instance(s)."
+}
 
-variable "user_data_worker" {
-  default     = "scripts/worker-node.sh"
+variable "user_data_workers" {
+  default     = "scripts/worker-nodes.sh"
   description = "(Required) The AWS User Data to use for the instance(s)."
 }
 
 ### Storage Variables
-variable "volume_size" {
+variable "volume_size_control" {
   default     = 128
   description = "(Required) The AWS Volume Size to use for the instance(s)."
 }
 
-variable "volume_type" {
+variable "volume_size_controls" {
+  default     = 128
+  description = "(Required) The AWS Volume Size to use for the instance(s)."
+}
+
+variable "volume_size_worker" {
+  default     = 128
+  description = "(Required) The AWS Volume Size to use for the instance(s)."
+}
+
+variable "volume_type_control" {
+  default     = "gp3"
+  description = "(Required) The AWS Volume Type to use for the instance(s)."
+}
+
+variable "volume_type_controls" {
+  default     = "gp3"
+  description = "(Required) The AWS Volume Type to use for the instance(s)."
+}
+
+variable "volume_type_worker" {
   default     = "gp3"
   description = "(Required) The AWS Volume Type to use for the instance(s)."
 }
