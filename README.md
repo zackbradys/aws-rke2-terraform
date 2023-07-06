@@ -4,14 +4,15 @@ author: Zack Brady - Field Engineer
 contact: zack.brady@ranchergovernment.com
 ---
 
-# AWS RKE2 Terraform
+# AWS RKE2 Terraform Guide
+
+![rancher-long-banner](images/rgs-banner-rounded.png)
 
 ### Table of Contents
 * [About Me](#about-me)
 * [Introduction](#introduction)
 * [Prerequisites](#prerequisites)
 * [Configuration](#configuration)
-* [Roadmap](#roadmap)
 
 ## About Me
 A little bit about me, my history, and what I've done in the industry.
@@ -38,10 +39,10 @@ The intent of this repository is to provide a baseline deployment for an out of 
 ## Configuration
 
 ### For AWS ELB (Load Balanced with Private Subnets)
-* Complete [terraform/aws-ec2-rke2-elb-tf](/terraform/aws-ec2-rke2-elb-tf/README.md)
+* Complete [terraform/aws-ec2-rke2-elb-tf](terraform/aws-ec2-rke2-elb-tf/README.md)
 
 ### For AWS Route 53 (DNS Round Robin with Public Subnets):
-* Complete [terraform/aws-ec2-rke2-route53-tf](/terraform/aws-ec2-rke2-route53-tf/README.MD)
+* Complete [terraform/aws-ec2-rke2-route53-tf](terraform/aws-ec2-rke2-route53-tf/README.MD)
 
 ### For Bring Your Own (LB/DNS/IP with Public Subnets):
-* Complete [terraform/aws-ec2-rke2-tf](/terraform/aws-ec2-rke2-tf/README.md)
+* Complete [terraform/aws-ec2-rke2-tf](terraform/aws-ec2-rke2-tf/README.md)

@@ -7,4 +7,28 @@
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
 ```
 
-*WIP WIP WIP*
+**Step 2:** Update the variables in [terraform.tfvars](terraform.tfvars):
+
+**Step 3:** Run the Terraform commands
+```bash
+### cd terraform/aws-ec2-rancher-tf
+terraform init
+
+terraform plan
+
+terraform apply --auto-approve
+
+terraform output
+```
+
+**Step 4:** Verify Deployment:
+```bash
+### Replace IP's and Key
+ssh -i "example.pem" rocky@0.0.0.0
+
+### Verify Successful Deployment
+cat /opt/rancher/COMPLETED
+
+### Verify kubectl
+kubectl get nodes -o wide
+```
