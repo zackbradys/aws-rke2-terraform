@@ -24,7 +24,7 @@ A little bit about me, my history, and what I've done in the industry.
 ## Introduction
 The intent of this repository is to provide a baseline deployment for an out of the box, secure, and highly available [Rancher Kubernetes Engine (RKE2)](https://docs.rke2.io) cluster on AWS, managed by Terraform. In this implementation, I wanted to remove most of the assumptions and complexities that you see in many deployments... aka get deployed as simply as possible!
 
-**Contributing:** Please utilize GitHubs features such as Forks, Issues, and Pull Requests to contribute!
+**Contributing:** Please utilize GitHubs features such as Issues, Forks, and Pull Requests to contribute!
 
 **Note:** This repository is a work in progress and may change from time to time.
 
@@ -37,11 +37,11 @@ The intent of this repository is to provide a baseline deployment for an out of 
 
 ## Configuration
 
-### For AWS ELB (Load Balanced)
+### For AWS ELB (Load Balanced with Private Subnets)
 * Complete [terraform/aws-ec2-rke2-elb-tf](/terraform/aws-ec2-rke2-elb-tf/README.md)
 
-### For AWS Route 53 (DNS Round Robin):
+### For AWS Route 53 (DNS Round Robin with Public Subnets):
 * Complete [terraform/aws-ec2-rke2-route53-tf](/terraform/aws-ec2-rke2-route53-tf/README.MD)
 
-### For Bring Your Own (LB/DNS/IP):
+### For Bring Your Own (LB/DNS/IP with Public Subnets):
 * Complete [terraform/aws-ec2-rke2-tf](/terraform/aws-ec2-rke2-tf/README.md)

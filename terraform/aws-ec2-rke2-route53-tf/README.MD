@@ -22,16 +22,14 @@ terraform apply --auto-approve
 terraform output
 ```
 
-
-**Step 4:** Complete the final steps on each of the nodes:
+**Step 4:** Verify Deployment:
 ```bash
-# Replace IP's and Key
-
+### Replace IP's and Key
 ssh -i "example.pem" rocky@0.0.0.0
 
-# On the RKE2 Control (cp) Nodes
-vi /opt/rancher/rke2-control-finalizer.txt
+### Verify Successful Deployment
+cat /opt/rancher/COMPLETED
 
-# On the RKE2 Worker (wk) Nodes
-vi /opt/rancher/rke2-agent-finalizer.txt
+### Verify kubectl
+kubectl get nodes -o wide
 ```

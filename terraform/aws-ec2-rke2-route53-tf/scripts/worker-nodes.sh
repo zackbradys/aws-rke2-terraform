@@ -69,12 +69,8 @@ EOF
 ### Download and Install RKE2 Agent
 curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=$vRKE2 INSTALL_RKE2_TYPE=agent sh -
 
-### Configure RKE2 Agent Finalizers
-mkdir -p /opt/rancher
-cat << EOF >> /opt/rancher/rke2-agent-finalizer.txt
-1) Copy and paste the following command to start the rke2-agent:
+### Enable and Start RKE2 Agent
 systemctl enable rke2-agent.service && systemctl start rke2-agent.service
-EOF
 
 ### Verify End of Script
 date >> /opt/rancher/COMPLETED

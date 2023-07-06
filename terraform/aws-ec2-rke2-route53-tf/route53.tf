@@ -1,7 +1,6 @@
 resource "aws_route53_zone" "aws_rke2_zone" {
   name          = var.domain
   force_destroy = true
-  private_zone  = false
   comment       = "AWS RKE2 Route53 Hosted Zone"
 }
 
@@ -10,7 +9,7 @@ resource "aws_route53_record" "aws_rke2_record_rke2" {
   name    = ""
   type    = "A"
   ttl     = 300
-  records = aws_eip.aws_eip_control.*.public_ip
+  records = [aws_eip.aws_eip_control.*.public_ip, aws_eip.aws_eip_controls.*.public_ip]
 }
 
 resource "aws_route53_record" "aws_rke2_record_ingress" {

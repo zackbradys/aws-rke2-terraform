@@ -48,29 +48,6 @@ yum --setopt=tsflags=noscripts install -y iscsi-initiator-utils && echo "Initiat
 echo -e "[keyfile]\nunmanaged-devices=interface-name:cali*;interface-name:flannel*" > /etc/NetworkManager/conf.d/rke2-canal.conf
 yum update -y && yum clean all
 
-### Install AWS CLI
-mkdir -p /opt/rancher/aws
-cd /opt/rancher/aws
-curl -#OL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-unzip awscli-exe-linux-x86_64.zip
-rm -rf awscli-exe-linux-x86_64.zip
-sudo ./aws/install
-mv /usr/local/bin/aws /usr/bin/aws
-
-### Install Cosign
-mkdir -p /opt/rancher/cosign
-cd /opt/rancher/cosign
-curl -#OL https://github.com/sigstore/cosign/releases/download/v1.8.0/cosign-linux-amd64
-mv cosign-linux-amd64 /usr/bin/cosign
-chmod 755 /usr/bin/cosign
-
-### Install Helm
-mkdir -p /opt/rancher/helm
-cd /opt/rancher/helm
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh && ./get_helm.sh
-mv /usr/local/bin/helm /usr/bin/helm
-
 ### Setup RKE2 Server
 mkdir -p /opt/rke2-artifacts
 cd /opt/rke2-artifacts
@@ -106,6 +83,7 @@ kubelet-arg:
 - streaming-connection-idle-timeout=5m
 - max-pods=200
 cloud-provider-name: aws
+server: https://$DOMAIN:9345
 token: $TOKEN
 tls-san:
   - $DOMAIN
@@ -141,23 +119,6 @@ curl -sfL https://get.rke2.io | INSTALL_RKE2_CHANNEL=$vRKE2 INSTALL_RKE2_TYPE=se
 
 ### Enable and Start RKE2 Server
 systemctl enable rke2-server.service && systemctl start rke2-server.service
-
-### Symlink kubectl and containerd
-sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
-sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
-
-### Update BASHRC with KUBECONFIG/PATH
-cat << EOF >> ~/.bashrc
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
-export PATH=$PATH:/var/lib/rancher/rke2/bin:/usr/local/bin/
-export DOMAIN=$DOMAIN
-export TOKEN=$TOKEN
-export vRKE2=$vRKE2
-alias k=kubectl
-EOF
-
-### Source BASHRC
-source ~/.bashrc
 
 ### Verify End of Script
 date >> /opt/rancher/COMPLETED
