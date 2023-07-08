@@ -10,9 +10,9 @@ resource "aws_instance" "aws_ec2_instance_control" {
   depends_on             = [aws_nat_gateway.aws-rke2-ngw]
 
   user_data = templatefile("${var.user_data_control}", {
-    DOMAIN          = "${var.domain}"
-    TOKEN           = "${var.token}"
-    vRKE2           = "${var.vRKE2}"
+    DOMAIN = "${var.domain}"
+    TOKEN  = "${var.token}"
+    vRKE2  = "${var.vRKE2}"
   })
 
   tags = {
@@ -43,9 +43,9 @@ resource "aws_instance" "aws_ec2_instance_controls" {
   depends_on             = [aws_instance.aws_ec2_instance_control, aws_nat_gateway.aws-rke2-ngw]
 
   user_data = templatefile("${var.user_data_controls}", {
-    DOMAIN          = "${var.domain}"
-    TOKEN           = "${var.token}"
-    vRKE2           = "${var.vRKE2}"
+    DOMAIN = "${var.domain}"
+    TOKEN  = "${var.token}"
+    vRKE2  = "${var.vRKE2}"
   })
 
   tags = {
@@ -76,9 +76,9 @@ resource "aws_instance" "aws_ec2_instance_worker" {
   depends_on             = [aws_instance.aws_ec2_instance_control, aws_instance.aws_ec2_instance_controls, aws_nat_gateway.aws-rke2-ngw]
 
   user_data = templatefile("${var.user_data_workers}", {
-    DOMAIN          = "${var.domain}"
-    TOKEN           = "${var.token}"
-    vRKE2           = "${var.vRKE2}"
+    DOMAIN = "${var.domain}"
+    TOKEN  = "${var.token}"
+    vRKE2  = "${var.vRKE2}"
   })
 
   tags = {
