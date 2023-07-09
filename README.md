@@ -4,9 +4,9 @@ author: Zack Brady - Field Engineer
 contact: zack.brady@ranchergovernment.com
 ---
 
-# AWS RKE2 Terraform Guide
-
 ![rancher-long-banner](images/rgs-banner-rounded.png)
+
+# AWS RKE2 Terraform Guide
 
 ### Table of Contents
 * [About Me](#about-me)
