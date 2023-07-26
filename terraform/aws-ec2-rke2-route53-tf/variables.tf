@@ -31,7 +31,7 @@ variable "token" {
 }
 
 variable "vRKE2" {
-  default     = "v1.24"
+  default     = "v1.25"
   type        = string
   description = "(Required) The RKE2 Version to use for the clusters(s)."
 }
@@ -111,7 +111,7 @@ variable "number_of_instances_controls" {
 }
 
 variable "number_of_instances_worker" {
-  default     = 3
+  default     = 2
   type        = number
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }
