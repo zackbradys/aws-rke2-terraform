@@ -1,30 +1,25 @@
 ### Required Variables
 variable "region" {
-  default     = ""
   type        = string
   description = "(Required) The AWS Region to use for the instance(s)."
 }
 
 variable "access_key" {
-  default     = ""
   type        = string
   description = "(Required) The AWS Access Key to use for the instance(s)."
 }
 
 variable "secret_key" {
-  default     = ""
   type        = string
   description = "(Required) The AWS Secret Key to use for the instance(s)."
 }
 
 variable "key_pair_name" {
-  default     = ""
   type        = string
   description = "(Required) The AWS Key Pair name to use for the instance(s)."
 }
 
 variable "domain" {
-  default     = ""
   type        = string
   description = "(Required) The AWS Route53 domain to use for the cluster(s)."
 }
@@ -47,7 +42,7 @@ variable "ami_id" {
   description = "(Required) The AWS AMI ID to use for the instance(s)."
 }
 
-## Networking Variables
+### Networking Variables
 variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
   type        = string
@@ -128,7 +123,7 @@ variable "number_of_instances_controls" {
 }
 
 variable "number_of_instances_worker" {
-  default     = 2
+  default     = 0
   type        = number
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }

@@ -42,7 +42,7 @@ variable "ami_id" {
   description = "(Required) The AWS AMI ID to use for the instance(s)."
 }
 
-## Networking Variables
+### Networking Variables
 variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
   type        = string
@@ -111,7 +111,7 @@ variable "number_of_instances_controls" {
 }
 
 variable "number_of_instances_worker" {
-  default     = 2
+  default     = 0
   type        = number
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }
