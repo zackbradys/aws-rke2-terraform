@@ -80,7 +80,6 @@ kubelet-arg:
 - read-only-port=0
 - authorization-mode=Webhook
 - streaming-connection-idle-timeout=5m
-- max-pods=200
 cloud-provider-name: aws
 server: https://$DOMAIN:9345
 token: $TOKEN
