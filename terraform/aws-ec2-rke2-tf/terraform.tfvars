@@ -12,3 +12,6 @@ key_pair_name = ""
 
 ### (Required) The domain to use for the cluster(s).
 domain = ""
+
+### (Required) The name (prefix) of all resources.
+prefix = ""

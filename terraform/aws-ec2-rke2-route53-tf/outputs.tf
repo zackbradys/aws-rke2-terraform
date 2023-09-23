@@ -1,3 +1,8 @@
+output "timestamp" {
+  value       = [timestamp()]
+  description = "Create/Update Timestamp"
+}
+
 output "vpc_id" {
   value       = [aws_vpc.aws_rke2_vpc.id]
   description = "VPC ID for the AWS RKE2 cluster"

@@ -1,3 +1,8 @@
+output "timestamp" {
+  value       = [timestamp()]
+  description = "Create/Update Timestamp"
+}
+
 output "vpc_id" {
   value       = [aws_vpc.aws_rke2_vpc.id]
   description = "VPC ID for the AWS RKE2 cluster"
@@ -10,7 +15,7 @@ output "subnet_ids" {
 
 output "instance_ips_control" {
   value       = ["${aws_eip.aws_eip_control.*.public_ip}"]
-  description = "Instance IPs for the Control Nodes in the AWS RKE2 cluster"
+  description = "Instance IPs for the Control Node in the AWS RKE2 cluster"
 }
 
 output "instance_ips_controls" {
