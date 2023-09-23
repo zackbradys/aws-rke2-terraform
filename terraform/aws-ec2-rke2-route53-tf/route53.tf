@@ -9,7 +9,7 @@ resource "aws_route53_record" "aws_rke2_record_rke2" {
   name    = ""
   type    = "A"
   ttl     = 300
-  records = [aws_eip.aws_eip_control.*.public_ip, aws_eip.aws_eip_controls.*.public_ip]
+  records = [aws_instance.aws_ec2_instance_control.*.public_ip, aws_instance.aws_ec2_instance_controls.*.public_ip]
 }
 
 resource "aws_route53_record" "aws_rke2_record_ingress" {

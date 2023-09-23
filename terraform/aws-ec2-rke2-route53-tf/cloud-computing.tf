@@ -96,23 +96,3 @@ resource "aws_instance" "aws_ec2_instance_worker" {
     }
   }
 }
-
-resource "aws_eip" "aws_eip_control" {
-  vpc      = true
-  count    = var.number_of_instances_control
-  instance = aws_instance.aws_ec2_instance_control[count.index].id
-
-  tags = {
-    Name = "${var.prefix}-cp-eip-0${count.index + 1}"
-  }
-}
-
-resource "aws_eip" "aws_eip_controls" {
-  vpc      = true
-  count    = var.number_of_instances_controls
-  instance = aws_instance.aws_ec2_instance_controls[count.index].id
-
-  tags = {
-    Name = "${var.prefix}-cp-eip-0${count.index + 1}"
-  }
-}
