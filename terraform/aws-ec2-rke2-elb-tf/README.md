@@ -5,6 +5,7 @@
 **Step 1:** Clone the repository:
 ```bash
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
+cd terraform/aws-ec2-rke2-elb-tf
 ```
 
 **Step 2:** Update the variables in [terraform.tfvars](terraform.tfvars):
@@ -23,11 +24,13 @@ key_pair_name = ""
 
 ### (Required) The AWS Route53 domain to use for the cluster(s).
 domain = ""
+
+### (Required) The name (prefix) of all resources.
+prefix = ""
 ```
 
 **Step 3:** Run the Terraform commands
 ```bash
-### cd terraform/aws-ec2-rancher-tf
 terraform init
 
 terraform plan

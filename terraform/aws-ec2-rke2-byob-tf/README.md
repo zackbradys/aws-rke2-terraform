@@ -5,6 +5,7 @@
 **Step 1:** Clone the repository:
 ```bash
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
+cd terraform/aws-ec2-rke2-byob-tf
 ```
 
 **Step 2:** Update the variables in [terraform.tfvars](terraform.tfvars):
@@ -23,11 +24,13 @@ key_pair_name = ""
 
 ### (Required) The domain to use for the cluster(s).
 domain = ""
+
+### (Required) The name (prefix) of all resources.
+prefix = ""
 ```
 
 **Step 3:** Run the Terraform commands
 ```bash
-### cd terraform/aws-ec2-rancher-tf
 terraform init
 
 terraform plan
@@ -69,7 +72,7 @@ Record TTL: 300
 Record Routing Policy: Simple Routing
 ```
 
-**Step 4b:** If you do not have a DNS Server available, you are able to configure your local /etc/hosts and on each of the nodes /etc/hosts, with the following configuration:
+**Step 4b:** If you do not have a DNS Service/Server available, you are able to configure your local `/etc/hosts` and on each of the nodes `/etc/hosts` with the following configuration:
 
 Example /etc/hosts on each node and locally:
 ```bash
