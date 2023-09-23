@@ -4,7 +4,7 @@ resource "aws_vpc" "aws_rke2_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "aws-rke2-vpc"
+    Name = "${var.prefix}-vpc"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_internet_gateway" "aws_rke2_igw" {
   vpc_id = aws_vpc.aws_rke2_vpc.id
 
   tags = {
-    Name = "aws-rke2-igw"
+    Name = "${var.prefix}-igw"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_route_table" "aws_rke2_rtb" {
   }
 
   tags = {
-    Name = "aws-rke2-rtb"
+    Name = "${var.prefix}-rtb"
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_subnet" "aws_rke2_subnet1" {
   availability_zone = "${var.region}a"
 
   tags = {
-    Name = "aws-rke2-subnet1"
+    Name = "${var.prefix}-subnet1"
   }
 }
 
@@ -60,7 +60,7 @@ resource "aws_subnet" "aws_rke2_subnet2" {
   availability_zone = "${var.region}b"
 
   tags = {
-    Name = "aws-rke2-subnet2"
+    Name = "${var.prefix}-subnet2"
   }
 }
 
@@ -70,17 +70,17 @@ resource "aws_subnet" "aws_rke2_subnet3" {
   availability_zone = "${var.region}c"
 
   tags = {
-    Name = "aws-rke2-subnet3"
+    Name = "${var.prefix}-subnet3"
   }
 }
 
 resource "aws_security_group" "aws_rke2_sg" {
   vpc_id      = aws_vpc.aws_rke2_vpc.id
   description = "AWS RKE2 Security Group"
-  name        = "aws-rke2-sg"
+  name        = "${var.prefix}-sg"
 
   tags = {
-    Name = "aws-rke2-sg"
+    Name = "${var.prefix}-sg"
   }
 }
 

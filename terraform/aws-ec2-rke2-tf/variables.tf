@@ -24,6 +24,12 @@ variable "domain" {
   description = "(Required) The AWS Route53 Domain to use for the instance(s)."
 }
 
+variable "prefix" {
+  default     = "aws-rke2"
+  type        = string
+  description = "(Required) The name (prefix) of all resources."
+}
+
 variable "token" {
   default     = "awsRKE2terraform"
   type        = string
@@ -62,24 +68,6 @@ variable "associate_public_ip_address" {
 }
 
 ### Instance Variables
-variable "instance_name_control" {
-  default     = "aws-rke2-cp"
-  type        = string
-  description = "(Required) The name of the AWS EC2 instance."
-}
-
-variable "instance_name_controls" {
-  default     = "aws-rke2-cp"
-  type        = string
-  description = "(Required) The name of the AWS EC2 instance."
-}
-
-variable "instance_name_worker" {
-  default     = "aws-rke2-wk"
-  type        = string
-  description = "(Required) The name of the AWS EC2 instance."
-}
-
 variable "instance_type_control" {
   default     = "m6a.xlarge"
   type        = string
@@ -105,7 +93,7 @@ variable "number_of_instances_control" {
 }
 
 variable "number_of_instances_controls" {
-  default     = 3
+  default     = 2
   type        = number
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }

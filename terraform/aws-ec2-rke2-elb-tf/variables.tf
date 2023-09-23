@@ -24,6 +24,12 @@ variable "domain" {
   description = "(Required) The AWS Route53 domain to use for the cluster(s)."
 }
 
+variable "prefix" {
+  default     = "aws-rke2"
+  type        = string
+  description = "(Required) The name (prefix) of all resources."
+}
+
 variable "token" {
   default     = "awsRKE2terraform"
   type        = string
@@ -68,30 +74,6 @@ variable "associate_public_ip_address" {
 }
 
 ### Instance Variables
-variable "instance_name_control" {
-  default     = "aws-rke2-cp"
-  type        = string
-  description = "(Required) The name of the AWS RKE2 Control Node EC2 instance."
-}
-
-variable "instance_name_controls" {
-  default     = "aws-rke2-cps"
-  type        = string
-  description = "(Required) The name of the AWS RKE2 Control NodesEC2 instance."
-}
-
-variable "instance_name_worker" {
-  default     = "aws-rke2-wk"
-  type        = string
-  description = "(Required) The name of the AWS RKE2 Worker EC2 instance."
-}
-
-variable "instance_name_bastion" {
-  default     = "aws-rke2-bastion"
-  type        = string
-  description = "(Required) The name of the AWS Bastion EC2 instance."
-}
-
 variable "instance_type_control" {
   default     = "m6a.xlarge"
   type        = string
