@@ -86,12 +86,6 @@ variable "instance_type_worker" {
   description = "(Required) The AWS Instance type to use for the instance(s)."
 }
 
-variable "instance_type_bastion" {
-  default     = "t3.medium"
-  type        = string
-  description = "(Required) The AWS Instance type to use for the instance(s)."
-}
-
 variable "number_of_instances_control" {
   default     = 1
   type        = number
@@ -106,12 +100,6 @@ variable "number_of_instances_controls" {
 
 variable "number_of_instances_worker" {
   default     = 0
-  type        = number
-  description = "(Required) The number of AWS EC2 instances to create on deployment."
-}
-
-variable "number_of_instances_bastion" {
-  default     = 1
   type        = number
   description = "(Required) The number of AWS EC2 instances to create on deployment."
 }
@@ -154,12 +142,6 @@ variable "volume_size_worker" {
   description = "(Required) The AWS Volume Size to use for the instance(s)."
 }
 
-variable "volume_size_bastion" {
-  default     = 16
-  type        = number
-  description = "(Required) The AWS Volume Size to use for the instance(s)."
-}
-
 variable "volume_type_control" {
   default     = "gp3"
   type        = string
@@ -173,12 +155,6 @@ variable "volume_type_controls" {
 }
 
 variable "volume_type_worker" {
-  default     = "gp3"
-  type        = string
-  description = "(Required) The AWS Volume Type to use for the instance(s)."
-}
-
-variable "volume_type_bastion" {
   default     = "gp3"
   type        = string
   description = "(Required) The AWS Volume Type to use for the instance(s)."

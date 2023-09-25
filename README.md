@@ -21,8 +21,6 @@ The intent of this repository is to provide a baseline deployment for an out of 
 
 **Contributing:** Please utilize GitHubs features such as Issues, Forks, and Pull Requests to contribute!
 
-**Note:** This repository is a work in progress and may change from time to time.
-
 ## Prerequisites
 * Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
 * AWS Commercial or AWS GovCloud Account with an Access Key and Secret Key
@@ -30,11 +28,11 @@ The intent of this repository is to provide a baseline deployment for an out of 
 
 ## Configuration
 
-### For AWS EC2 ELB (Load Balancers and Private Subnets)
+### For AWS EC2s with AWS ELBs (Load Balanced)
 * Follow --> [terraform/aws-ec2-rke2-elb-tf](terraform/aws-ec2-rke2-elb-tf/README.md)
 
-### For AWS EC2 Route53 (DNS Round Robin and Public Subnets):
+### For AWS EC2s with AWS Route53 (DNS Round Robin):
 * Follow --> [terraform/aws-ec2-rke2-route53-tf](terraform/aws-ec2-rke2-route53-tf/README.MD)
 
-### For AWS EC2 Bring Your Own (LB/DNS/IP and Public Subnets):
+### For AWS EC2s with Bring Your Own LB/DNS/IP:
 * Follow --> [terraform/aws-ec2-rke2-byob-tf](terraform/aws-ec2-rke2-byob-tf/README.md)
