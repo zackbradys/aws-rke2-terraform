@@ -27,7 +27,7 @@ variable "domain" {
 variable "prefix" {
   default     = "aws-rke2"
   type        = string
-  description = "(Required) The name (prefix) of all resources."
+  description = "(Required) The prefix/name for all provisioned resources."
 }
 
 variable "token" {

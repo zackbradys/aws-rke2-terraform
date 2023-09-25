@@ -4,10 +4,11 @@ resource "aws_instance" "aws_ec2_instance_control" {
   count         = var.number_of_instances_control
 
   vpc_security_group_ids      = [aws_security_group.aws_rke2_sg.id]
-  subnet_id                   = element([aws_subnet.aws_rke2_subnet1.id, aws_subnet.aws_rke2_subnet2.id, aws_subnet.aws_rke2_subnet3.id], count.index % 3)
+  subnet_id                   = element([aws_subnet.aws_rke2_public_subnet1.id], count.index % 1)
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = aws_iam_instance_profile.aws_iam_profile_control.name
   key_name                    = var.key_pair_name
+  depends_on                  = [aws_internet_gateway.aws_rke2_igw]
 
   user_data = templatefile("${var.user_data_control}", {
     DOMAIN = "${var.domain}"
@@ -37,10 +38,11 @@ resource "aws_instance" "aws_ec2_instance_controls" {
   count         = var.number_of_instances_controls
 
   vpc_security_group_ids      = [aws_security_group.aws_rke2_sg.id]
-  subnet_id                   = element([aws_subnet.aws_rke2_subnet1.id, aws_subnet.aws_rke2_subnet2.id, aws_subnet.aws_rke2_subnet3.id], count.index % 3)
+  subnet_id                   = element([aws_subnet.aws_rke2_public_subnet2.id, aws_subnet.aws_rke2_public_subnet3.id], count.index % 2)
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = aws_iam_instance_profile.aws_iam_profile_control.name
   key_name                    = var.key_pair_name
+  depends_on                  = [aws_instance.aws_ec2_instance_control, aws_internet_gateway.aws_rke2_igw]
 
   user_data = templatefile("${var.user_data_controls}", {
     DOMAIN = "${var.domain}"
@@ -70,10 +72,12 @@ resource "aws_instance" "aws_ec2_instance_worker" {
   count         = var.number_of_instances_worker
 
   vpc_security_group_ids      = [aws_security_group.aws_rke2_sg.id]
-  subnet_id                   = element([aws_subnet.aws_rke2_subnet1.id, aws_subnet.aws_rke2_subnet2.id, aws_subnet.aws_rke2_subnet3.id], count.index % 3)
+  subnet_id                   = element([aws_subnet.aws_rke2_public_subnet1.id, aws_subnet.aws_rke2_public_subnet2.id, aws_subnet.aws_rke2_public_subnet3.id], count.index % 3)
   associate_public_ip_address = var.associate_public_ip_address
   iam_instance_profile        = aws_iam_instance_profile.aws_iam_profile_worker.name
   key_name                    = var.key_pair_name
+  depends_on                  = [aws_instance.aws_ec2_instance_control, aws_instance.aws_ec2_instance_controls, aws_internet_gateway.aws_rke2_igw]
+
 
   user_data = templatefile("${var.user_data_workers}", {
     DOMAIN = "${var.domain}"

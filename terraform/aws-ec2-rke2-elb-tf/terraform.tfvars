@@ -13,5 +13,5 @@ key_pair_name = ""
 ### (Required) The AWS Route53 domain to use for the cluster(s).
 domain = ""
 
-### (Required) The name (prefix) of all resources.
+### (Required) The prefix/name for all provisioned resources.
 prefix = ""

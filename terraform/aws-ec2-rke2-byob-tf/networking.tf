@@ -9,15 +9,17 @@ resource "aws_vpc" "aws_rke2_vpc" {
 }
 
 resource "aws_internet_gateway" "aws_rke2_igw" {
-  vpc_id = aws_vpc.aws_rke2_vpc.id
+  vpc_id     = aws_vpc.aws_rke2_vpc.id
+  depends_on = [aws_vpc.aws_rke2_vpc]
 
   tags = {
     Name = "${var.prefix}-igw"
   }
 }
 
-resource "aws_route_table" "aws_rke2_rtb" {
-  vpc_id = aws_vpc.aws_rke2_vpc.id
+resource "aws_route_table" "aws_rke2_public_rtb" {
+  vpc_id     = aws_vpc.aws_rke2_vpc.id
+  depends_on = [aws_vpc.aws_rke2_vpc]
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -25,53 +27,59 @@ resource "aws_route_table" "aws_rke2_rtb" {
   }
 
   tags = {
-    Name = "${var.prefix}-rtb"
+    Name = "${var.prefix}-public-rtb"
   }
 }
 
-resource "aws_route_table_association" "aws_rke2_rta1" {
-  subnet_id      = aws_subnet.aws_rke2_subnet1.id
-  route_table_id = aws_route_table.aws_rke2_rtb.id
-}
-
-resource "aws_route_table_association" "aws_rke2_rta2" {
-  subnet_id      = aws_subnet.aws_rke2_subnet2.id
-  route_table_id = aws_route_table.aws_rke2_rtb.id
-}
-
-resource "aws_route_table_association" "aws_rke2_rta3" {
-  subnet_id      = aws_subnet.aws_rke2_subnet3.id
-  route_table_id = aws_route_table.aws_rke2_rtb.id
-}
-
-resource "aws_subnet" "aws_rke2_subnet1" {
+resource "aws_subnet" "aws_rke2_public_subnet1" {
   vpc_id            = aws_vpc.aws_rke2_vpc.id
   cidr_block        = var.subnet_cidr_blocks[0]
   availability_zone = "${var.region}a"
+  depends_on        = [aws_vpc.aws_rke2_vpc]
 
   tags = {
-    Name = "${var.prefix}-subnet1"
+    Name = "${var.prefix}-public-subnet1"
   }
 }
 
-resource "aws_subnet" "aws_rke2_subnet2" {
+resource "aws_subnet" "aws_rke2_public_subnet2" {
   vpc_id            = aws_vpc.aws_rke2_vpc.id
   cidr_block        = var.subnet_cidr_blocks[1]
   availability_zone = "${var.region}b"
+  depends_on        = [aws_vpc.aws_rke2_vpc]
 
   tags = {
-    Name = "${var.prefix}-subnet2"
+    Name = "${var.prefix}-public-subnet2"
   }
 }
 
-resource "aws_subnet" "aws_rke2_subnet3" {
+resource "aws_subnet" "aws_rke2_public_subnet3" {
   vpc_id            = aws_vpc.aws_rke2_vpc.id
   cidr_block        = var.subnet_cidr_blocks[2]
   availability_zone = "${var.region}c"
+  depends_on        = [aws_vpc.aws_rke2_vpc]
 
   tags = {
-    Name = "${var.prefix}-subnet3"
+    Name = "${var.prefix}-public-subnet3"
   }
+}
+
+resource "aws_route_table_association" "aws_rke2_public_rta1" {
+  subnet_id      = aws_subnet.aws_rke2_subnet1.id
+  route_table_id = aws_route_table.aws_rke2_rtb.id
+  depends_on     = [aws_route_table.aws_rke2_rtb]
+}
+
+resource "aws_route_table_association" "aws_rke2_public_rta2" {
+  subnet_id      = aws_subnet.aws_rke2_subnet2.id
+  route_table_id = aws_route_table.aws_rke2_rtb.id
+  depends_on     = [aws_route_table.aws_rke2_rtb]
+}
+
+resource "aws_route_table_association" "aws_rke2_public_rta3" {
+  subnet_id      = aws_subnet.aws_rke2_subnet3.id
+  route_table_id = aws_route_table.aws_rke2_rtb.id
+  depends_on     = [aws_route_table.aws_rke2_rtb]
 }
 
 resource "aws_security_group" "aws_rke2_sg" {
@@ -91,6 +99,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress1" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow SSH Communication"
 }
 
@@ -101,6 +110,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress2" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Server Communication"
 }
 
@@ -111,6 +121,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress3" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Agent Communication"
 }
 
@@ -121,6 +132,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress4" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Ingress Communication"
 }
 
@@ -131,6 +143,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress5" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Secure Ingress Communication"
 }
 
@@ -141,6 +154,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress6" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Miscellanous Communication"
 }
 
@@ -151,6 +165,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress7" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Kubelet Communication"
 }
 
@@ -161,6 +176,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress8" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 ECTD Communication"
 }
 
@@ -171,6 +187,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress9" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 Calico Communication"
 }
 
@@ -181,6 +198,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress10" {
   protocol          = "UDP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow RKE2 VXLAN Communication"
 }
 
@@ -191,6 +209,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress11" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Rancher NeuVector Communication"
 }
 
@@ -201,6 +220,7 @@ resource "aws_security_group_rule" "aws_rke2_sg_ingress12" {
   protocol          = "TCP"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow Rancher NeuVector Communication"
 }
 
@@ -211,5 +231,6 @@ resource "aws_security_group_rule" "aws_rke2_sg_egress1" {
   protocol          = "-1"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.aws_rke2_sg.id
+  depends_on        = [aws_security_group.aws_rke2_sg]
   description       = "Allow All Egress Communication"
 }
