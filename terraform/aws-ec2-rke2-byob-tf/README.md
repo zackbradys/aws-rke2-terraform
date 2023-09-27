@@ -17,8 +17,6 @@ terraform init
 terraform plan
 
 terraform apply --auto-approve
-
-terraform output
 ```
 
 **Step 4a:** Setup DNS Round Robin on your DNS Server/Provider. I prefer to utilize this option in AWS Route 53, with the following configuration:

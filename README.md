@@ -10,7 +10,7 @@
 
 ## About Me
 A little bit about me, my history, and what I've done in the industry.
-- DOD/IC Contractor
+- Former Contractor
 - U.S. Military Veteran
 - Open-Source Contributor
 - Built and Exited a Digital Firm

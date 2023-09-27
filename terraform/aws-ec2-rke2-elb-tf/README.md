@@ -17,8 +17,6 @@ terraform init
 terraform plan
 
 terraform apply --auto-approve
-
-terraform output
 ```
 
 **Step 4:** Verify Deployment:
