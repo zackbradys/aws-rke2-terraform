@@ -24,7 +24,6 @@ The intent of this repository is to provide a baseline deployment for an out of 
 ## Prerequisites
 * Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
 * AWS Commercial or AWS GovCloud Account with an Access Key and Secret Key
-* Ability to Subscribe to the [AWS Marketplace Listing for the AMI for Rocky 9](https://aws.amazon.com/marketplace/pp/prodview-ygp66mwgbl2ii) or use your own AWS AMI.
 
 ## Configuration
 
