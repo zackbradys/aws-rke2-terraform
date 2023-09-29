@@ -2,12 +2,6 @@
 
 # AWS RKE2 Terraform Guide
 
-### Table of Contents
-* [About Me](#about-me)
-* [Introduction](#introduction)
-* [Prerequisites](#prerequisites)
-* [Configuration](#configuration)
-
 ## About Me
 A little bit about me, my history, and what I've done in the industry.
 - Former Contractor
@@ -28,10 +22,10 @@ The intent of this repository is to provide a baseline deployment for an out of 
 ## Configuration
 
 ### For AWS EC2s with AWS ELBs (Load Balanced)
-* Follow --> [terraform/aws-ec2-rke2-elb-tf](terraform/aws-ec2-rke2-elb-tf/README.md)
+* Follow --> [terraform/aws-rke2-cluster-elb](terraform/aws-rke2-cluster-elb/README.md)
 
 ### For AWS EC2s with AWS Route53 (DNS Round Robin):
-* Follow --> [terraform/aws-ec2-rke2-route53-tf](terraform/aws-ec2-rke2-route53-tf/README.MD)
+* Follow --> [terraform/aws-rke2-cluster-route53](terraform/aws-rke2-cluster-route53/README.MD)
 
 ### For AWS EC2s with Bring Your Own LB/DNS/IP:
-* Follow --> [terraform/aws-ec2-rke2-byob-tf](terraform/aws-ec2-rke2-byob-tf/README.md)
+* Follow --> [terraform/aws-rke2-cluster-byob](terraform/aws-rke2-cluster-byob/README.md)

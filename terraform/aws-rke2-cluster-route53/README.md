@@ -5,7 +5,7 @@
 **Step 1:** Clone the repository:
 ```bash
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
-cd terraform/aws-ec2-rke2-route53-tf
+cd terraform/aws-rke2-cluster-route53
 ```
 
 **Step 2:** Update the variables in [terraform.tfvars](terraform.tfvars)
