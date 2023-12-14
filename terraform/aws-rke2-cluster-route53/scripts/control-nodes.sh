@@ -92,8 +92,17 @@ EOF
 cat << EOF >> /etc/rancher/rke2/audit-policy.yaml
 apiVersion: audit.k8s.io/v1
 kind: Policy
+metadata:
+  name: rke2-audit-policy
 rules:
-- level: RequestResponse
+  - level: Metadata
+    resources:
+    - group: ""
+      resources: ["secrets"]
+  - level: RequestResponse
+    resources:
+    - group: ""
+      resources: ["*"]
 EOF
 
 ### Download and Install RKE2 Server

@@ -114,8 +114,17 @@ EOF
 cat << EOF >> /etc/rancher/rke2/audit-policy.yaml
 apiVersion: audit.k8s.io/v1
 kind: Policy
+metadata:
+  name: rke2-audit-policy
 rules:
-- level: RequestResponse
+  - level: Metadata
+    resources:
+    - group: ""
+      resources: ["secrets"]
+  - level: RequestResponse
+    resources:
+    - group: ""
+      resources: ["*"]
 EOF
 
 ### Download and Install RKE2 Server
@@ -130,13 +139,13 @@ systemctl enable rke2-server.service && systemctl start rke2-server.service
 sudo ln -s /var/lib/rancher/rke2/data/v1*/bin/kubectl /usr/bin/kubectl
 sudo ln -s /var/run/k3s/containerd/containerd.sock /var/run/containerd/containerd.sock
 
-4) Copy and paste the following items to your ~/.bashrc file:
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+4) Update and Source BASHRC with the commands below:
+cat << EOF >> ~/.bashrc
 export PATH=$PATH:/var/lib/rancher/rke2/bin:/usr/local/bin/
-export DOMAIN=$DOMAIN
-export TOKEN=$TOKEN
-export vRKE2=$vRKE2
+export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+export CRI_CONFIG_FILE=/var/lib/rancher/rke2/agent/etc/crictl.yaml
 alias k=kubectl
+EOF
 
 5) Run the following command to source the ~/.bashrc file:
 source ~/.bashrc
