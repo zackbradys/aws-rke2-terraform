@@ -42,8 +42,8 @@ EOF
 sysctl -p > /dev/null 2>&1
 
 ### Install Packages
-yum install -y iptables container-selinux iptables libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup
-yum install -y nfs-utils; yum install -y iscsi-initiator-utils; yum install -y zip zstd tree jq
+yum install -y iptables container-selinux libnetfilter_conntrack libnfnetlink libnftnl policycoreutils-python-utils cryptsetup
+yum install -y nfs-utils iscsi-initiator-utils; yum install -y zip zstd tree jq
 
 ### Modify Settings
 echo "InitiatorName=$(/sbin/iscsi-iname)" > /etc/iscsi/initiatorname.iscsi && systemctl enable --now iscsid
@@ -57,7 +57,7 @@ mkdir -p /etc/rancher/rke2/
 cat << EOF >> /etc/rancher/rke2/config.yaml
 profile: cis-1.23
 selinux: true
-write-kubeconfig-mode: 0640
+write-kubeconfig-mode: 0600
 kube-apiserver-arg:
 - authorization-mode=RBAC,Node
 kubelet-arg:

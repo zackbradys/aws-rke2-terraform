@@ -37,13 +37,13 @@ variable "token" {
 }
 
 variable "vRKE2" {
-  default     = "v1.25"
+  default     = "v1.26"
   type        = string
   description = "(Optional) The RKE2 Version to use for the clusters(s)."
 }
 
 variable "ami_id" {
-  default     = "ami-026ebd4cfe2c043b2"
+  default     = "ami-079db87dc4c10ac91"
   type        = string
   description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
@@ -81,7 +81,7 @@ variable "instance_type_controls" {
 }
 
 variable "instance_type_worker" {
-  default     = "m5.xlarge"
+  default     = "m5.2xlarge"
   type        = string
   description = "(Optional) The AWS Instance type to use for the instance(s)."
 }

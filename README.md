@@ -16,7 +16,7 @@ The intent of this repository is to provide a baseline deployment for an out of 
 **Contributing:** Please utilize GitHubs features such as Issues, Forks, and Pull Requests to contribute!
 
 ## Prerequisites
-* Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider
+* Git Utility, Terminal Utility, and HashiCorp Terraform with Access to the AWS Provider Plugin
 * AWS Commercial or AWS GovCloud Account with an Access Key and Secret Key
 
 ## Configuration
