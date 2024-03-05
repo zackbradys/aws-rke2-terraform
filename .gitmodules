@@ -1,3 +1,0 @@
-[submodule "aws-rke2-cluster"]
-	path = aws-rke2-cluster
-	url = git@github.com:zackbradys/terraform-aws-rke2-cluster.git

@@ -3,6 +3,7 @@
 ## Configuration Option: **AWS Route 53 (DNS Round Robin)**
 
 **Step 1:** Clone the repository:
+
 ```bash
 git clone https://github.com/zackbradys/aws-rke2-terraform.git
 cd terraform/aws-rke2-cluster-route53
@@ -11,6 +12,7 @@ cd terraform/aws-rke2-cluster-route53
 **Step 2:** Update the variables in [terraform.tfvars](terraform.tfvars)
 
 **Step 3:** Run the Terraform commands
+
 ```bash
 ### cd terraform/aws-ec2-rancher-tf
 terraform init
@@ -21,6 +23,7 @@ terraform apply --auto-approve
 ```
 
 **Step 4:** Verify Deployment:
+
 ```bash
 ### Replace IP's and Key
 ssh -i "example.pem" rocky@0.0.0.0
