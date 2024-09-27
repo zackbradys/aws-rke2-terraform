@@ -4,7 +4,7 @@
 
 ## About Me
 
-A little bit about me and my history...
+A little bit about me and my history in the industry. If you have any questions, please reach out to me at zbrady@zackbrady.com!
 
 - Former Contractor
 - U.S. Military Reservist
