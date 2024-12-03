@@ -43,7 +43,7 @@ variable "vRKE2" {
 }
 
 variable "ami_id" {
-  default     = "ami-0ebfd941bbafe70c6"
+  default     = "ami-0453ec754f44f9a4a"
   type        = string
   description = "(Optional) The AWS AMI ID to use for the instance(s)."
 }
